@@ -46,4 +46,12 @@ public class LogInPage extends BasePage{
         Assert.assertTrue(isElementPresent(submitLoginButton));
         return this;
     }
+
+    @FindBy(css = ".signUpBtn")
+    WebElement signUpButton;
+
+    public SignUpPage clickOnSignUpButton() {
+        click(signUpButton);
+        return new SignUpPage(driver);
+    }
 }

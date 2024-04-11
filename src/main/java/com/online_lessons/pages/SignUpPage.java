@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignUpPage extends BasePage{
 
@@ -34,7 +36,7 @@ public class SignUpPage extends BasePage{
     @FindBy(css = ".submit-reg-button")
     WebElement submitSignUpButton;
 
-    public SignUpPage enterSubmitSignUpButton() {
+    public SignUpPage clickOnSubmitSignUpButton() {
         click(submitSignUpButton);
         return this;
     }
@@ -73,6 +75,10 @@ public class SignUpPage extends BasePage{
 
     public SignUpPage clickOnTermsOfUseLink(int index) {
         click(termOfUseLink);
+
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(index));
+
         return this;
     }
 
@@ -81,6 +87,10 @@ public class SignUpPage extends BasePage{
 
     public SignUpPage clickOnPrivacyPolicyLink(int index) {
         click(privacyPolicyLink);
+
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(index));
+
         return this;
     }
 
@@ -89,7 +99,8 @@ public class SignUpPage extends BasePage{
 
     public SignUpPage verifyNewTabText(String text) {
         String actual = termsText.getText();
-        Assert.assertTrue(shouldHaveText(termsText, text, 10));
+        Assert.assertTrue(termsText.getText().contains(text));
+//        Assert.assertTrue(shouldHaveText(termsText, text, 10));
         return this;
     }
 
@@ -104,5 +115,26 @@ public class SignUpPage extends BasePage{
     public LogInPage clickOnLoginLink() {
         click(logInLink);
         return new LogInPage(driver);
+    }
+
+    @FindBy(css = ".registration-error-message")
+    WebElement invalidFormatText;
+
+    public SignUpPage verifyInvalidFormatText(String text) {
+        String actual = invalidFormatText.getText();
+        Assert.assertTrue(actual.contains(text));
+        return this;
+    }
+
+    @FindBy(css = ".loginBtn")
+    WebElement logInButton;
+
+    public SignUpPage verifyLoginButtonPresent() {
+        Assert.assertTrue(isElementPresent(logInButton)); 
+        return this;
+    }
+
+    public SignUpPage verifyAlertWithText(String text) {
+        return this;
     }
 }

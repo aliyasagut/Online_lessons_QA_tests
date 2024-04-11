@@ -4,7 +4,7 @@ import com.online_lessons.pages.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CreateCourseTests extends TestBase{
+public class CreateCoursePositiveTests extends TestBase{
 
     @BeforeMethod
     public void precondition() {
@@ -24,6 +24,7 @@ public class CreateCourseTests extends TestBase{
                         "communication, time management, problem-solving, and leadership skills is ever-growing, the ability to effectively apply soft " +
                         "skills becomes paramount to success.", "C:\\Project\\cats.jpg")
                 .clickOnSaveButton();
+//                .verifyAlertCourseCreatedSuccessfully();
 
     }
 

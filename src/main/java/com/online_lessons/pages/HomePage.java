@@ -50,4 +50,12 @@ public class HomePage extends BasePage{
         click(myCoursesLink);
         return new MyCoursesPage(driver);
     }
+
+    @FindBy(css = "[href='/my_account']")
+    WebElement myAccountButton;
+
+    public AccountPage clickOnMyAccountButton() {
+        click(myAccountButton);
+        return new AccountPage(driver);
+    }
 }
