@@ -1,0 +1,17 @@
+1234,test@mail.com,Test123$
+------,test@mail.com,Test123$
+_____,test@mail.com,Test123$
+ab,test@mail.com,Test123$
+qwertyqwert,test@mail.com,Test123$
+testuser2,user123example.com,Test123$
+testuser3,@example.com,Test123$
+testuser4,user123@.com,Test123$
+testuser5,user123@com,Test123$
+testuser6,user123@example.,Test123$
+testuser7,test@mail.com,Tst123$
+testuser8,test@mail.com,test123$
+testuser9,test@mail.com,Testtes$
+testuser10,test@mail.com,Test1234
+testuser11,test@mail.com,TEST123$
+testuser12,test@mail.com,Тест123!
+testuser12,test@mail.com,Тест123!
