@@ -98,15 +98,8 @@ public class SignUpPage extends BasePage{
     WebElement termsText;
 
     public SignUpPage verifyNewTabText(String text) {
-        String actual = termsText.getText();
         Assert.assertTrue(termsText.getText().contains(text));
-//        Assert.assertTrue(shouldHaveText(termsText, text, 10));
         return this;
-    }
-
-    private boolean shouldHaveText(WebElement element, String text, int index) {
-        return new WebDriverWait(driver, Duration.ofSeconds(index))
-                .until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
     @FindBy(css = "div.login-link a[href='/log']")
@@ -134,7 +127,13 @@ public class SignUpPage extends BasePage{
         return this;
     }
 
-    public SignUpPage verifyAlertWithText(String text) {
+    @FindBy(xpath = "//div[@class='Toastify__toast-body' and contains(., 'This nickname is already taken')]")
+    WebElement popUp;
+
+    public SignUpPage verifyPopUp() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUp));
+        Assert.assertTrue(isElementPresent(popUp));
         return this;
     }
 }

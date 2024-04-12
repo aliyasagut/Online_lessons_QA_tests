@@ -34,9 +34,6 @@ public class SignUpNegativeTests extends TestBase{
     public void signInWithExistedAccount() {
         new SignUpPage(driver).enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
                 .clickOnSubmitSignUpButton()
-                .verifyAlertWithText("//div[contains(text(),'This nickname is already taken')]");
+                .verifyPopUp();
     }
-
-
-
 }
