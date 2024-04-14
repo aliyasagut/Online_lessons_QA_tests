@@ -128,12 +128,12 @@ public class SignUpPage extends BasePage{
     }
 
     @FindBy(xpath = "//div[@class='Toastify__toast-body' and contains(., 'This nickname is already taken')]")
-    WebElement popUp;
+    WebElement popUpUserExists;
 
     public SignUpPage verifyPopUp() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOf(popUp));
-        Assert.assertTrue(isElementPresent(popUp));
+        wait.until(ExpectedConditions.visibilityOf(popUpUserExists));
+        Assert.assertTrue(isElementPresent(popUpUserExists));
         return this;
     }
 }

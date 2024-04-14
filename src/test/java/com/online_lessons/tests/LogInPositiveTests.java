@@ -2,6 +2,7 @@ package com.online_lessons.tests;
 
 import com.online_lessons.pages.HomePage;
 import com.online_lessons.pages.LogInPage;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,11 +14,20 @@ public class LogInPositiveTests extends TestBase {
                 .clickOnLoginButton();
     }
 
+    @AfterMethod
+    public void postCondition() {
+        new HomePage(driver).clickOnBurgerMenu()
+                .clickOnLogOutButton()
+                .verifyLoginButtonPresent();
+    }
+
 
     @Test
     public void logInPositiveTest() {
         new LogInPage(driver).enterLogInData("newuser@gmail.com", "Test1pass!")
-                .submitLogin()
-                .verifyLogOutButtonPresent();
+                .clickOnVisibilityToggle()
+                .verifyPassword("Test1pass!")
+                .submitLoginPositive();
+        new HomePage(driver).verifyLogOutButtonPresent();
     }
 }

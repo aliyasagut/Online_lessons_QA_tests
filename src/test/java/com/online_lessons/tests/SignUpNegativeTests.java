@@ -23,7 +23,7 @@ public class SignUpNegativeTests extends TestBase{
                 .verifyLoginButtonPresent();
     }
 
-    @Test(dataProvider = "signUpWithEmptyFieldsWithCsv", dataProviderClass = DataProviders.class)
+    @Test(dataProvider = "signUpWithEmptyFieldsFromCsv", dataProviderClass = DataProviders.class)
     public void signUpWithEmptyFieldsWithCsv(User user) {
         new SignUpPage(driver).enterSignUpData(user.getNickname(), user.getEmail(), user.getPassword())
                 .clickOnSubmitSignUpButton()

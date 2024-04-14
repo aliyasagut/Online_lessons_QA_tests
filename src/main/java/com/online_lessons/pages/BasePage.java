@@ -34,4 +34,8 @@ public abstract class BasePage {
             return false;
         }
     }
+
+    public void uploadFile(WebElement element, String filePath) {
+        element.sendKeys(filePath);
+    }
 }

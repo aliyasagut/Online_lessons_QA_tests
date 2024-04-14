@@ -1,5 +1,6 @@
 package com.online_lessons.fw;
 
+import com.online_lessons.models.Course;
 import com.online_lessons.models.User;
 import org.testng.annotations.DataProvider;
 
@@ -32,7 +33,7 @@ public class DataProviders {
     }
 
     @DataProvider
-    public  Iterator<Object[]> signUpWithEmptyFieldsWithCsv() throws IOException {
+    public  Iterator<Object[]> signUpWithEmptyFieldsFromCsv() throws IOException {
         List<Object[]> list = new ArrayList<>();
 
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/registration_emptyFields.csv")));
@@ -48,4 +49,41 @@ public class DataProviders {
 
         return list.iterator();
     }
+
+    @DataProvider
+    public Iterator<Object[]> updateCoursePositiveFromCsv() throws IOException {
+        List<Object[]> list = new ArrayList<>();
+
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/update_course_positive.csv")));
+
+        String line = reader.readLine();
+
+        while (line != null) {
+
+            String[] split = line.split(",");
+            list.add(new Object[]{new Course().setTitle(split[0]).setPrice(Integer.parseInt(split[1])).setDescription(split[2])});
+            line = reader.readLine();
+        }
+
+        return list.iterator();
+    }
+
+    @DataProvider
+    public Iterator<Object[]> updateCourseNegativeFromCsv() throws IOException {
+        List<Object[]> list = new ArrayList<>();
+
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/update_course_negative.csv")));
+
+        String line = reader.readLine();
+
+        while (line != null) {
+
+            String[] split = line.split(",");
+            list.add(new Object[]{new Course().setTitle(split[0]).setPrice(Integer.parseInt(split[1])).setDescription(split[2])});
+            line = reader.readLine();
+        }
+
+        return list.iterator();
+    }
+
 }

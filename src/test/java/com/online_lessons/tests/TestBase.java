@@ -20,7 +20,7 @@ public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-    @BeforeSuite
+    @BeforeMethod
     public void init() {
         driver = new ChromeDriver();
         driver.get("http://localhost:5173/");
@@ -28,7 +28,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @AfterSuite(enabled = false)
+    @AfterMethod(enabled = false)
     public void tearDown() {
         driver.quit();
     }

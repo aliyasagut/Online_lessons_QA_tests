@@ -3,6 +3,11 @@ package com.online_lessons.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 
 public class HomePage extends BasePage{
     public HomePage(WebDriver driver) {
@@ -46,7 +51,7 @@ public class HomePage extends BasePage{
     @FindBy(css = "[href='/my_courses']")
     WebElement myCoursesLink;
 
-    public MyCoursesPage selectMyCourses() {
+    public MyCoursesPage clickOnMyCoursesButton() {
         click(myCoursesLink);
         return new MyCoursesPage(driver);
     }
@@ -57,5 +62,29 @@ public class HomePage extends BasePage{
     public AccountPage clickOnMyAccountButton() {
         click(myAccountButton);
         return new AccountPage(driver);
+    }
+
+    @FindBy(css = "[href='/']")
+    WebElement logOutLink;
+
+    public HomePage verifyLogOutButtonPresent() {
+        click(burgerMenu);
+        Assert.assertTrue(isElementPresent(logOutLink));
+        return this;
+    }
+
+    public HomePage clickOnLogOutButton() {
+        click(logOutLink);
+        return this;
+    }
+
+    @FindBy(xpath = "//div[@class='Toastify__toast-body' and contains(., 'You logged out.')]")
+    WebElement popUpUserLogin;
+
+    public HomePage verifyPopUpUserLoggedOut() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpUserLogin));
+        Assert.assertTrue(isElementPresent(popUpUserLogin));
+        return this;
     }
 }

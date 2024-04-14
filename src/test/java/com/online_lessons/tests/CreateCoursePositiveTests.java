@@ -9,8 +9,8 @@ public class CreateCoursePositiveTests extends TestBase{
     @BeforeMethod
     public void precondition() {
         new HomePage(driver).clickOnLoginButton();
-        new LogInPage(driver).enterLogInData("newuser@gmail.com", "Test1pass!").submitLogin();
-        new HomePage(driver).clickOnBurgerMenu().selectMyCourses();
+        new LogInPage(driver).enterLogInData("newuser@gmail.com", "Test1pass!").submitLoginPositive();
+        new HomePage(driver).clickOnBurgerMenu().clickOnMyCoursesButton();
         new MyCoursesPage(driver).clickOnMyCreatedCourses();
         new MyCreatedCoursesPage(driver).clickOnCreateNewCourseButton();
     }

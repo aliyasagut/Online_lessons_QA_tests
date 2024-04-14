@@ -4,8 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateCoursePage extends BasePage{
-    public CreateCoursePage(WebDriver driver) {
+import java.time.Duration;
+
+public class CoursePage extends BasePage{
+    public CoursePage(WebDriver driver) {
         super(driver);
     }
 
@@ -21,21 +23,20 @@ public class CreateCoursePage extends BasePage{
     @FindBy(id = "coverPhoto")
     WebElement uploadPhotoButton;
 
-    public CreateCoursePage enterNewCourseData(String title, int price, String description, String photo_path) {
+    public CoursePage enterNewCourseData(String title, int price, String description) {
         type(courseTitle, title);
         type(coursePrice, String.valueOf(price));
         type(courseDescription, description);
-
-        uploadFile(uploadPhotoButton, photo_path);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         return this;
     }
 
-    @FindBy(css = ".create-course-submit")
-    WebElement saveCourseButton;
+    @FindBy(css = ".edit-course-submit")
+    WebElement saveButton;
 
-    public MyCoursesPage clickOnSaveButton() {
-        click(saveCourseButton);
+    public MyCoursesPage clickOnSaveButtonPositive() {
+        click(saveButton);
         return new MyCoursesPage(driver);
     }
 }
