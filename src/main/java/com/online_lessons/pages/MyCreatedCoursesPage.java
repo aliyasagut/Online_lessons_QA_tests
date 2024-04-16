@@ -3,6 +3,11 @@ package com.online_lessons.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 
 public class MyCreatedCoursesPage extends BasePage{
     public MyCreatedCoursesPage(WebDriver driver) {
@@ -12,9 +17,9 @@ public class MyCreatedCoursesPage extends BasePage{
     @FindBy(css = ".create-course-button")
     WebElement createNewCourseButton;
 
-    public MyCreatedCoursesPage clickOnCreateNewCourseButton() {
+    public CreateCoursePage clickOnCreateNewCourseButton() {
         click(createNewCourseButton);
-        return this;
+        return new CreateCoursePage(driver);
     }
 
     @FindBy(css = ".edit-button")
@@ -36,5 +41,23 @@ public class MyCreatedCoursesPage extends BasePage{
             driver.switchTo().alert().dismiss();
         }
         return this;
+    }
+
+    @FindBy(xpath = "//div[contains(text(), 'Course deleted successfully.')]")
+    WebElement popUpCourseDeleted;
+
+    public MyCreatedCoursesPage verifyPopUpCourseDeleted() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpCourseDeleted));
+        Assert.assertTrue(isElementPresent(popUpCourseDeleted));
+        return this;
+    }
+
+    @FindBy(css = ".add-button")
+    WebElement addLessonButton;
+
+    public CreateLessonPage clickAddLessonButton() {
+        click(addLessonButton);
+        return new CreateLessonPage(driver);
     }
 }

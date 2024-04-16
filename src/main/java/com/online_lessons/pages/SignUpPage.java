@@ -36,9 +36,9 @@ public class SignUpPage extends BasePage{
     @FindBy(css = ".submit-reg-button")
     WebElement submitSignUpButton;
 
-    public SignUpPage clickOnSubmitSignUpButton() {
+    public HomePage clickOnSubmitSignUpButton() {
         click(submitSignUpButton);
-        return this;
+        return new HomePage(driver);
     }
 
     @FindBy(css = ".burgerMenu")

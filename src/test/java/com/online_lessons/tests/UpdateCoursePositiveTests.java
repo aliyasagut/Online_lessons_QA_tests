@@ -27,7 +27,7 @@ public class UpdateCoursePositiveTests extends TestBase {
                                 "which are deemed crucial for both career success and personal growth. In today's world, where the importance of interpersonal " +
                                 "communication, time management, problem-solving, and leadership skills is ever-growing, the ability to effectively apply soft " +
                                 "skills becomes paramount to success.", "C:\\Project\\cats.jpg")
-                .clickOnSaveButton();
+                .clickOnSaveButtonPositive();
         new MyCoursesPage(driver)
                 .clickOnMyCreatedCourses();
     }

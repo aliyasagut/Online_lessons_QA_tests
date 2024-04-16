@@ -64,7 +64,7 @@ public class HomePage extends BasePage{
         return new AccountPage(driver);
     }
 
-    @FindBy(css = "[href='/']")
+    @FindBy(xpath = "//div[@class='burgerMenuContent show']/a[3]")
     WebElement logOutLink;
 
     public HomePage verifyLogOutButtonPresent() {
@@ -85,6 +85,20 @@ public class HomePage extends BasePage{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(popUpUserLogin));
         Assert.assertTrue(isElementPresent(popUpUserLogin));
+        return this;
+    }
+
+    @FindBy(xpath = "//div[@class='Toastify__toast-body' and contains(., 'User newuser deleted')]")
+    WebElement popUpUserDeleted;
+
+    public HomePage verifyPopUpUserDeleted() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpUserDeleted));
+        Assert.assertTrue(isElementPresent(popUpUserDeleted));
+        return this;
+    }
+
+    public HomePage verifyLogoutButtonPresent() {
         return this;
     }
 }

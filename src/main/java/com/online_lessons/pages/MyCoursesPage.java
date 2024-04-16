@@ -41,4 +41,31 @@ public class MyCoursesPage extends BasePage{
         Assert.assertTrue(isElementPresent(popUpCourseUpdatedNegative));
         return this;
     }
+
+    @FindBy(xpath = "//div[contains(text(), 'Course created successfully')]")
+    WebElement popUpCourseCreatedSuccessfully;
+
+    public MyCoursesPage verifyPopUpCourseCreatedSuccessfully() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpCourseCreatedSuccessfully));
+        Assert.assertTrue(isElementPresent(popUpCourseCreatedSuccessfully));
+
+        return this;
+    }
+
+    @FindBy(css = ".burgerMenu")
+    WebElement burgerMenu;
+
+    public MyCoursesPage clickOnBurgerMenu() {
+        click(burgerMenu);
+        return this;
+    }
+
+    @FindBy(css = "[href='/my_account']")
+    WebElement myAccountButton;
+
+    public AccountPage clickOnMyAccountButton() {
+        click(myAccountButton);
+        return new AccountPage(driver);
+    }
 }

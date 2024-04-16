@@ -21,4 +21,12 @@ public class AccountPage extends BasePage{
         }
         return new HomePage(driver);
     }
+
+    @FindBy(xpath = "//button[text()='Change password']")
+    WebElement changePasswordButton;
+
+    public ChangePasswordPage clickOnChangePasswordLink() {
+        click(changePasswordButton);
+        return new ChangePasswordPage(driver);
+    }
 }

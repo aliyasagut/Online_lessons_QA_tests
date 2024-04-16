@@ -86,4 +86,24 @@ public class DataProviders {
         return list.iterator();
     }
 
+    @DataProvider
+    public Iterator<Object[]> createCourseNegativeFromCsv() throws IOException {
+        List<Object[]> list = new ArrayList<>();
+
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/create_course_negative.csv")));
+
+        String line = reader.readLine();
+
+        while (line != null) {
+
+            System.out.println("Line: " + line);
+
+            String[] split = line.split(",");
+            list.add(new Object[]{new Course().setTitle(split[0]).setPrice(Integer.parseInt(split[1])).setPhotoPath(split[2]).setDescription(split[3])});
+            line = reader.readLine();
+        }
+
+        return list.iterator();
+    }
+
 }
