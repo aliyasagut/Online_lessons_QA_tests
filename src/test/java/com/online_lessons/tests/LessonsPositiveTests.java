@@ -36,7 +36,7 @@ public class LessonsPositiveTests extends TestBase{
         new AccountPage(driver)
                 .clickOnDeleteAccountButton("Ok");
         new HomePage(driver)
-                .verifySignUpButtonPresent();
+                .verifyPopUpUserDeleted();
     }
 
     @Test
@@ -46,15 +46,15 @@ public class LessonsPositiveTests extends TestBase{
         new MyCreatedCoursesPage(driver)
                 .clickAddLessonButton();
         new CreateLessonPage(driver)
-                .enterLessonsData("Lesson 1: Effective Communication in the Workplace",
+                .enterLessonsData(1, "Lesson 1: Effective Communication in the Workplace",
                         "In this Soft Skills course, you'll learn the art of effective communication in the workplace. From mastering the art of active listening to delivering impactful presentations, this course covers essential communication techniques that are vital for success in any professional environment. Through practical exercises and real-world examples, you'll develop the skills needed to express your ideas clearly, resolve conflicts constructively, and build strong professional relationships. Whether you're a seasoned professional or just starting your career journey, this course will empower you to communicate with confidence and clarity in any situation.",
                         "C:\\Project\\lesson1.png")
                 .clickAddLessonButton()
-                .enterLessonsData("Lesson 2: Building Strong Interpersonal Relationships",
+                .enterLessonsData(2, "Lesson 2: Building Strong Interpersonal Relationships",
                         "In this Soft Skills course, we explore the importance of building strong interpersonal relationships. From understanding non-verbal cues to fostering empathy and trust, this course delves into the key components of successful relationships both in the workplace and beyond. Through interactive activities and practical scenarios, you'll learn how to navigate diverse personalities, communicate effectively, and resolve conflicts diplomatically. By mastering the art of relationship-building, you'll enhance your professional network, boost team collaboration, and create a positive work environment conducive to growth and success.",
                         "C:\\Project\\lesson2.jpg")
                 .clickAddLessonButton()
-                .enterLessonsData("Lesson 3: Effective Communication Strategies",
+                .enterLessonsData(3, "Lesson 3: Effective Communication Strategies",
                         "Welcome to the third lesson of the Soft Skills course: Effective Communication Strategies. In this module, we'll delve into the intricacies of communication and discover how to convey messages with clarity and impact. From active listening techniques to choosing the appropriate communication channels, you'll learn how to articulate your ideas effectively and understand the perspectives of others. Through practical exercises and real-world examples, you'll enhance your verbal and written communication skills, build rapport with colleagues and clients, and navigate challenging conversations with confidence. By mastering effective communication strategies, you'll become a more persuasive and influential communicator in both personal and professional contexts.",
                         "C:\\Project\\lesson2.jpg")
                 .clickAddLessonButton()

@@ -11,8 +11,11 @@ public class CreateCourseNegativeTests extends TestBase{
 
     @BeforeMethod
     public void precondition() {
-        new HomePage(driver).clickOnLoginButton();
-        new LogInPage(driver).enterLogInData("newuser@gmail.com", "Test1pass!").submitLoginPositive();
+        new HomePage(driver)
+                .clickOnSignUpButton();
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
+                .clickOnSubmitSignUpButton();
         new HomePage(driver).clickOnBurgerMenu().clickOnMyCoursesButton();
         new MyCoursesPage(driver).clickOnMyCreatedCourses();
         new MyCreatedCoursesPage(driver).clickOnCreateNewCourseButton();
@@ -20,10 +23,13 @@ public class CreateCourseNegativeTests extends TestBase{
 
     @AfterMethod
     public void postCondition() {
-        new CreateCoursePage(driver).clickOnHomeLink();
-        new HomePage(driver).clickOnBurgerMenu()
-                .clickOnLogOutButton()
-                .verifyLoginButtonPresent();
+        new CreateCoursePage(driver)
+                .clickOnBurgerMenu()
+                .clickOnMyAccount();
+        new AccountPage(driver)
+                .clickOnDeleteAccountButton("Ok");
+        new HomePage(driver)
+                .verifyPopUpUserDeleted();
     }
 
     @Test(dataProvider = "createCourseNegativeFromCsv", dataProviderClass = DataProviders.class)

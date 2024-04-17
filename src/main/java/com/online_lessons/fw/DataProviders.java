@@ -96,8 +96,6 @@ public class DataProviders {
 
         while (line != null) {
 
-            System.out.println("Line: " + line);
-
             String[] split = line.split(",");
             list.add(new Object[]{new Course().setTitle(split[0]).setPrice(Integer.parseInt(split[1])).setPhotoPath(split[2]).setDescription(split[3])});
             line = reader.readLine();
@@ -105,5 +103,4 @@ public class DataProviders {
 
         return list.iterator();
     }
-
 }

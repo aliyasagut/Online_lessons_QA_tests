@@ -12,42 +12,53 @@ public class SignUpPositiveTests extends TestBase {
 
     @BeforeMethod
     public void precondition() {
-        new HomePage(driver).verifySignUpButtonPresent()
+        new HomePage(driver)
+                .verifySignUpButtonPresent()
                 .clickOnSignUpButton();
     }
 
     @AfterMethod
     public void postCondition() {
-        new HomePage(driver).clickOnBurgerMenu()
+        new HomePage(driver)
+                .clickOnBurgerMenu()
                 .clickOnMyAccountButton();
-        new AccountPage(driver).clickOnDeleteAccountButton("Ok");
-        new HomePage(driver).verifyLoginButtonPresent();
+        new AccountPage(driver)
+                .clickOnDeleteAccountButton("Ok");
+        new HomePage(driver)
+                .verifyPopUpUserDeleted();
     }
 
     @Test
     public void signUpPositiveTest() {
-        new SignUpPage(driver).enterSignUpData("newuser1", "newuser1@gmail.com", "Test1pass!")
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
                 .clickOnSubmitSignUpButton();
-//        new HomePage(driver)
-//                .verifyLogoutButtonPresent();
+        new HomePage(driver)
+                .verifyPopUserSignedUpSuccess();
     }
 
     @Test
     public void checkVisibilityTogglePositiveTest() {
-        new SignUpPage(driver).enterSignUpData("newuser1", "newuser1@gmail.com", "Test1pass!")
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
                 .clickOnVisibilityToggle()
                 .verifyPassword("Test1pass!")
                 .clickOnSubmitSignUpButton();
+        new HomePage(driver)
+                .verifyPopUserSignedUpSuccess();
     }
 
     @Test
     public void checkLoginLinkRedirection() {
-        new SignUpPage(driver).clickOnLoginLink();
-        new LogInPage(driver).verifyLoginPageOpened()
+        new SignUpPage(driver)
+                .clickOnLoginLink();
+        new LogInPage(driver)
+                .verifyLoginPageOpened()
                 .clickOnSignUpButton();
-        new SignUpPage(driver).enterSignUpData("newuser1", "newuser1@gmail.com", "Test1pass!")
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
                 .clickOnSubmitSignUpButton();
-//        new HomePage(driver)
-//                .verifyLogoutButtonPresent();
+        new HomePage(driver)
+                .verifyPopUserSignedUpSuccess();
     }
 }

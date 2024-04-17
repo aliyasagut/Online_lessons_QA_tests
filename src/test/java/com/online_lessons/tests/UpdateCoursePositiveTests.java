@@ -10,10 +10,10 @@ public class UpdateCoursePositiveTests extends TestBase {
     @BeforeMethod
     public void precondition() {
         new HomePage(driver)
-                .clickOnLoginButton();
-        new LogInPage(driver)
-                .enterLogInData("newuser@gmail.com", "Test1pass!")
-                .submitLoginPositive();
+                .clickOnSignUpButton();
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
+                .clickOnSubmitSignUpButton();
         new HomePage(driver)
                 .clickOnBurgerMenu()
                 .clickOnMyCoursesButton();
@@ -35,9 +35,12 @@ public class UpdateCoursePositiveTests extends TestBase {
     @AfterMethod
     public void postCondition() {
         new MyCoursesPage(driver)
-                .clickOnMyCreatedCourses();
-        new MyCreatedCoursesPage(driver)
-                .clickOnDeleteButton("Ok");
+                .clickOnBurgerMenu()
+                .clickOnMyAccountButton();
+        new AccountPage(driver)
+                .clickOnDeleteAccountButton("Ok");
+        new HomePage(driver)
+                .verifyPopUpUserDeleted();
     }
 
     @Test(dataProvider = "updateCoursePositiveFromCsv", dataProviderClass = DataProviders.class)

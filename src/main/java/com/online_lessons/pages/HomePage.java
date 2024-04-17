@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -101,4 +101,26 @@ public class HomePage extends BasePage{
     public HomePage verifyLogoutButtonPresent() {
         return this;
     }
+
+
+    @FindBy(xpath = "//div[@class='Toastify__toast-body' and contains(., 'You logged in.')]")
+    WebElement popUpLoginSuccessful;
+
+    public HomePage verifyPopUpLoginSuccessful() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpLoginSuccessful));
+        Assert.assertTrue(isElementPresent(popUpLoginSuccessful));
+        return this;
+    }
+
+    @FindBy(xpath = "//div[@class='Toastify__toast-body' and contains(., 'Account has been created and you are logged in.')]")
+    WebElement popUpSignupSuccessful;
+
+    public HomePage verifyPopUserSignedUpSuccess() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpSignupSuccessful));
+        Assert.assertTrue(isElementPresent(popUpSignupSuccessful));
+        return this;
+    }
 }
+

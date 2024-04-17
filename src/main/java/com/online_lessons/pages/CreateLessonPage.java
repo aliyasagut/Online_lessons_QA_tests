@@ -19,10 +19,14 @@ public class CreateLessonPage extends BasePage{
     @FindBy(id = "lessonPhoto")
     WebElement lessonPhotoField;
 
-    public CreateLessonPage enterLessonsData(String title, String content, String photoPath) {
+    @FindBy(id = "number")
+    WebElement lessonNumberField;
+
+    public CreateLessonPage enterLessonsData(int lessonNumber, String title, String content, String photoPath) {
+        type(lessonNumberField, String.valueOf(lessonNumber));
         type(titleField, title);
         type(contentField, content);
-        type(lessonPhotoField, photoPath);
+        lessonPhotoField.sendKeys(photoPath);
         return this;
     }
 

@@ -11,29 +11,33 @@ public class SignUpNegativeTests extends TestBase{
 
     @BeforeMethod
     public void precondition() {
-        new HomePage(driver).verifySignUpButtonPresent()
+        new HomePage(driver)
+                .verifySignUpButtonPresent()
                 .clickOnSignUpButton();
     }
 
     @Test(dataProvider = "signUpNegativeFromCsv", dataProviderClass = DataProviders.class)
     public void signUpWithInvalidDataWithCsv(User user) {
-        new SignUpPage(driver).enterSignUpData(user.getNickname(), user.getEmail(), user.getPassword())
+        new SignUpPage(driver)
+                .enterSignUpData(user.getNickname(), user.getEmail(), user.getPassword())
                 .verifyInvalidFormatText("Invalid")
-                .clickOnSubmitSignUpButton()
+                .clickOnSubmitSignUpButtonNegative()
                 .verifyLoginButtonPresent();
     }
 
     @Test(dataProvider = "signUpWithEmptyFieldsFromCsv", dataProviderClass = DataProviders.class)
     public void signUpWithEmptyFieldsWithCsv(User user) {
-        new SignUpPage(driver).enterSignUpData(user.getNickname(), user.getEmail(), user.getPassword())
-                .clickOnSubmitSignUpButton()
+        new SignUpPage(driver)
+                .enterSignUpData(user.getNickname(), user.getEmail(), user.getPassword())
+                .clickOnSubmitSignUpButtonNegative()
                 .verifyInvalidFormatText("Invalid");
     }
 
     @Test
     public void signInWithExistedAccount() {
-        new SignUpPage(driver).enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
-                .clickOnSubmitSignUpButton()
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
+                .clickOnSubmitSignUpButtonNegative()
                 .verifyPopUp();
     }
 }

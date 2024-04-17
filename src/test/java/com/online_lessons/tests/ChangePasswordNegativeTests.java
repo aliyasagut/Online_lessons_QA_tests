@@ -1,11 +1,14 @@
 package com.online_lessons.tests;
 
-import com.online_lessons.pages.*;
+import com.online_lessons.pages.AccountPage;
+import com.online_lessons.pages.ChangePasswordPage;
+import com.online_lessons.pages.HomePage;
+import com.online_lessons.pages.SignUpPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ChangePasswordPositiveTest extends TestBase{
+public class ChangePasswordNegativeTests extends TestBase {
 
     @BeforeMethod
     public void precondition() {
@@ -27,17 +30,16 @@ public class ChangePasswordPositiveTest extends TestBase{
     }
 
     @Test
-    public void changePasswordPositiveTest() {
+    public void changePasswordNegativeTest() {
         new HomePage(driver)
                 .clickOnBurgerMenu()
                 .clickOnMyAccountButton();
         new AccountPage(driver)
                 .clickOnChangePasswordLink();
         new ChangePasswordPage(driver)
-                .enterChangePasswordData("Test1pass!", "New11pass!", "New11pass!")
+                .enterChangePasswordData("Test1pass!", "New11pass!1", "New11pass!")
                 .clickSavePasswordButton()
-                .verifyPopUpPasswordChangedSuccessfully();
+                .verifyPopUpPasswordMismatch();
     }
-
 
 }

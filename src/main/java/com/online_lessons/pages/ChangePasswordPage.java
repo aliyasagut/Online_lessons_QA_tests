@@ -3,7 +3,11 @@ package com.online_lessons.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class ChangePasswordPage extends BasePage{
     public ChangePasswordPage(WebDriver driver) {
@@ -34,19 +38,31 @@ public class ChangePasswordPage extends BasePage{
         return this;
     }
 
-    @FindBy(id = "success")
-    WebElement confirmText;
-
-    public ChangePasswordPage verifyConfirmText() {
-        Assert.assertTrue(isElementPresent(confirmText));
-        return this;
-    }
-
     @FindBy(xpath = "//button[text()='Account info']")
     WebElement accountInfoLink;
 
     public AccountPage clickOnAccountInfoLink() {
         click(accountInfoLink);
         return new AccountPage(driver);
+    }
+
+    @FindBy(xpath = "//div[contains(text(), 'Password changed successfully')]")
+    WebElement popUpPasswordChangedSuccessfully;
+
+    public ChangePasswordPage verifyPopUpPasswordChangedSuccessfully() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpPasswordChangedSuccessfully));
+        Assert.assertTrue(isElementPresent(popUpPasswordChangedSuccessfully));
+        return this;
+    }
+
+    @FindBy(xpath = "//div[contains(text(), 'New password and confirm password mismatch')]")
+    WebElement popUpPasswordMismatch;
+
+    public ChangePasswordPage verifyPopUpPasswordMismatch() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOf(popUpPasswordMismatch));
+        Assert.assertTrue(isElementPresent(popUpPasswordMismatch));
+        return this;
     }
 }

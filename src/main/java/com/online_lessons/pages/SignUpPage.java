@@ -136,4 +136,9 @@ public class SignUpPage extends BasePage{
         Assert.assertTrue(isElementPresent(popUpUserExists));
         return this;
     }
+
+    public SignUpPage clickOnSubmitSignUpButtonNegative() {
+        click(submitSignUpButton);
+        return this;
+    }
 }

@@ -9,20 +9,22 @@ public class SignUpExternalLinksTest extends TestBase{
 
     @BeforeMethod
     public void precondition() {
-        new HomePage(driver).verifySignUpButtonPresent()
+        new HomePage(driver)
                 .clickOnSignUpButton();
     }
 
     @Test
     public void checkTermOfUseLink() {
-        new SignUpPage(driver).enterSignUpData("newuser1", "newuser1@gmail.com", "Test1pass!")
+        new SignUpPage(driver)
+                .enterSignUpData("newuser", "newuser@gmail.com", "Test1pass!")
                 .clickOnTermsOfUseLink(1)
                 .verifyNewTabText("Terms of service");
     }
 
     @Test
     public void checkPrivacyPolicyLink() {
-        new SignUpPage(driver).enterSignUpData("newuser1", "newuser1@gmail.com", "Test1pass!")
+        new SignUpPage(driver)
+                .enterSignUpData("newuser1", "newuser1@gmail.com", "Test1pass!")
                 .clickOnPrivacyPolicyLink(1)
                 .verifyNewTabText("Privacy policy");
     }

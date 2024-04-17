@@ -86,4 +86,12 @@ public class CreateCoursePage extends BasePage{
         click(logOutLink);
         return new HomePage(driver);
     }
+
+    @FindBy(css = "[href='/my_account']")
+    WebElement myAccountButton;
+
+    public AccountPage clickOnMyAccount() {
+        click(myAccountButton);
+        return new AccountPage(driver);
+    }
 }
