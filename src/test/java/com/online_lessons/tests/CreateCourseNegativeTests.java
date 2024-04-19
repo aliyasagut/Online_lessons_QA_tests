@@ -29,12 +29,13 @@ public class CreateCourseNegativeTests extends TestBase{
         new AccountPage(driver)
                 .clickOnDeleteAccountButton("Ok");
         new HomePage(driver)
-                .verifyPopUpUserDeleted();
+                .verifyPopUpUserDeleted()
+                .verifySignUpButtonPresent();
     }
 
     @Test(dataProvider = "createCourseNegativeFromCsv", dataProviderClass = DataProviders.class)
     public void createCourseNegativeTest(Course course) {
-        System.out.println(course);
+        System.out.println("Course: " + course);
         new CreateCoursePage(driver)
                 .enterNewCourseData(course.getTitle(), course.getPrice(), course.getDescription(), course.getPhotoPath())
                 .clickOnSaveButtonNegative()

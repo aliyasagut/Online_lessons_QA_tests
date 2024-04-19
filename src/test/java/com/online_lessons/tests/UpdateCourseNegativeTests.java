@@ -43,11 +43,13 @@ public class UpdateCourseNegativeTests extends TestBase {
         new AccountPage(driver)
                 .clickOnDeleteAccountButton("Ok");
         new HomePage(driver)
-                .verifyPopUpUserDeleted();
+                .verifyPopUpUserDeleted()
+                .verifySignUpButtonPresent();
     }
 
     @Test(dataProvider = "updateCourseNegativeFromCsv", dataProviderClass = DataProviders.class)
     public void updateCourseNegativeWithCsv(Course course) {
+        System.out.println("Course: " + course);
         new MyCreatedCoursesPage(driver)
                 .clickOnEditCourseCard();
         new CoursePage(driver)
